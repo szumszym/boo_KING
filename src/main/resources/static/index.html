@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <!-- JQuery import -->
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="app/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="app/bower_components/ng-img-crop/compile/unminified/ng-img-crop.css">
+    <style>
+        .cropArea {
+            background: #E4E4E4;
+            overflow: hidden;
+            width: 500px;
+            height: 350px;
+        }
+    </style>
 </head>
+<body ng-app="boo_KING">
+<form name="myForm" ng-controller="UploadController">
+    <div>Crop Image and Upload</div>
+    <button ngf-select ng-model="picFile" accept="image/*">
+        Select Picture
+    </button>
+    <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+         class="cropArea">
+        <img-crop image="picFile  | ngfDataUrl" area-type="square"
+                  result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+        </img-crop>
+    </div>
+    <div>
+        <img ng-src="{{croppedDataUrl}}"/>
+    </div>
+    <button ng-click="upload('HOTEL', croppedDataUrl)">Submit</button>
 
-<body>
-
-<!-- Upload file form -->
-<form id="upload-file-form">
-    <label for="upload-file-name">Name: </label>
-    <input id="upload-file-name" type="text" name="name"/><br>
-    <label for="upload-file-input">Upload your file:</label>
-    <input id="upload-file-input" type="file" name="uploadfile" accept="image/jpeg"/>
-    <br/>
-    <span id="upload-file-message"></span>
+        <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+        </span>
+    <span ng-show="result">Upload Successful</span>
+    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
 </form>
 
-<!-- Javascript functions -->
-<script>
+<script src="app/bower_components/angular/angular.js"></script>
+<script src="app/bower_components/angular-route/angular-route.js"></script>
+<script src="app/bower_components/angular-aria/angular-aria.js"></script>
+<script src="app/bower_components/angular-animate/angular-animate.js"></script>
+<script src="app/bower_components/angular-material/angular-material.js"></script>
+<script src="app/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+<script src="app/bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="app/bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
 
-    // bind the on-change event for the input element (triggered when a file
-    // is chosen)
-    $(document).ready(function () {
-        $("#upload-file-input").on("change", uploadFile);
-    });
-
-    /**
-     * Upload the file sending it via Ajax at the Spring Boot server.
-     */
-    function uploadFile() {
-        var formdata = new FormData($("#upload-file-form")[0])
-        //   formdata.append("name", $("#upload-file-name")[0].value)
-        $.ajax({
-            url: "/uploadFile",
-            type: "POST",
-            data: formdata,
-            enctype: 'multipart/form-data',
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function (e) {
-                // Handle upload success
-                $("#upload-file-message").text("File succesfully uploaded");
-
-                $('body').append('<img src="files/' + e + '"/>')
-            },
-            error: function () {
-                // Handle upload error
-                $("#upload-file-message").text(
-                        "File not uploaded (perhaps it's too much big)");
-            }
-        });
-    } // function uploadFile
-</script>
+<script src="app/scripts/controllers/UploadController.js"></script>
 
 </body>
-
 </html>

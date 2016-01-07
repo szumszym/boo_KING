@@ -1,0 +1,14 @@
+{
+  "name": "boo_KING",
+  "private": true,
+  "version": "0.0.1",
+  "description": "",
+  "repository": "https://github.com/rastek/boo_KING",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.2"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}

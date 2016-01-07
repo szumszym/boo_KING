@@ -18,41 +18,57 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Szymon on 1/7/2016.
  */
 @Controller
+@RequestMapping("/api")
 public class UploadController {
 
+    DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
     @Autowired
     private Environment env;
 
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> uploadFile(@RequestParam("name") String name,
-                                        @RequestParam("uploadfile") MultipartFile uploadfile) {
+    public ResponseEntity<?> uploadFile(@RequestParam("type") String type, @RequestParam("file") MultipartFile file) {
 
         String filepath;
-        String filename = uploadfile.getOriginalFilename();
+        String filename = df.format(Calendar.getInstance().getTime()) + ".jpg";
         try {
-            if (!name.isEmpty()) {
-                filename = name;
-            }
-            String directory = env.getProperty("booking.paths.uploadedFiles");
-            Path path = createDir(Paths.get(directory));
+            Path path = resolvePath(type);
 
             filepath = Paths.get(path.toString(), filename).toString();
 
             BufferedOutputStream stream =
                     new BufferedOutputStream(new FileOutputStream(new File(filepath)));
-            stream.write(uploadfile.getBytes());
+            stream.write(file.getBytes());
             stream.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.status(HttpStatus.OK).body(filename);
+    }
+
+    private Path resolvePath(String type) throws IOException {
+        String directory = env.getProperty("booking.paths.uploadedFiles");
+        String hotel = env.getProperty("booking.paths.hotel");
+        String room = env.getProperty("booking.paths.room");
+        Path path = Paths.get(directory, env.getProperty("booking.paths.other"));
+        if ("HOTEL".equals(type)) {
+            String hotelId = "/1"; //TODO
+            path = Paths.get(directory, hotel, hotelId);
+        } else if ("ROOM".equals(type)) {
+            String hotelId = "/1"; //TODO
+            String roomId = "/1"; //TODO
+            path = Paths.get(directory, hotel, hotelId, room, roomId);
+        }
+        return createDir(path);
     }
 
     private Path createDir(Path path) throws IOException {
