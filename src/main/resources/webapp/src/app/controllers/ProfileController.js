@@ -2,7 +2,7 @@
 
     angular
         .module('app')
-        .controller('ProfileController', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+        .controller('ProfileController', function ($scope, Upload, $timeout) {
             var vm = this;
 
             vm.user = {
@@ -37,6 +37,6 @@
                     $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                 });
             }
-        }]);
+        });
 
 })();

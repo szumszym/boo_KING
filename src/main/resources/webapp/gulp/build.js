@@ -15,7 +15,7 @@ gulp.task('partials', function () {
         ])
         .pipe($.htmlmin())
         .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: 'angularMaterialAdmin'
+            module: 'app'
         }))
         .pipe(gulp.dest(paths.tmp + '/partials/'));
 });
