@@ -1,52 +1,32 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" ng-app="angularMaterialAdmin">
 <head>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="app/bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" type="text/css" href="app/bower_components/ng-img-crop/compile/unminified/ng-img-crop.css">
-    <style>
-        .cropArea {
-            background: #E4E4E4;
-            overflow: hidden;
-            width: 500px;
-            height: 350px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>Angular Material Dashboard</title>
+    <meta name="description" content="Angular admin dashboard with material design">
+    <meta name="author" content="flatlogic.com">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor-7d228f1d.css">
+
+
+    <link rel="stylesheet" href="styles/index-9ecec1ae.css">
+
 </head>
-<body ng-app="boo_KING">
-<form name="myForm" ng-controller="UploadController">
-    <div>Crop Image and Upload</div>
-    <button ngf-select ng-model="picFile" accept="image/*">
-        Select Picture
-    </button>
-    <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
-         class="cropArea">
-        <img-crop image="picFile  | ngfDataUrl" area-type="square"
-                  result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
-        </img-crop>
-    </div>
-    <div>
-        <img ng-src="{{croppedDataUrl}}"/>
-    </div>
-    <button ng-click="upload('HOTEL', croppedDataUrl)">Submit</button>
+<body>
+<!--[if lt IE 10]>
+<p>You are using an <strong>outdated</strong> browser. Please
+    <a href="http://browsehappy.com/">upgrade your browser</a>
+    to improve your experience.</p>
+<![endif]-->
 
-        <span class="progress" ng-show="progress >= 0">
-          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-        </span>
-    <span ng-show="result">Upload Successful</span>
-    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-</form>
+<div ui-view layout="row" layout-fill></div>
 
-<script src="app/bower_components/angular/angular.js"></script>
-<script src="app/bower_components/angular-route/angular-route.js"></script>
-<script src="app/bower_components/angular-aria/angular-aria.js"></script>
-<script src="app/bower_components/angular-animate/angular-animate.js"></script>
-<script src="app/bower_components/angular-material/angular-material.js"></script>
-<script src="app/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
-<script src="app/bower_components/ng-file-upload/ng-file-upload.js"></script>
-<script src="app/bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+<script src="scripts/vendor-49d54aad.js"></script>
 
-<script src="app/scripts/controllers/UploadController.js"></script>
+<script src="scripts/app-e78df5bb.js"></script>
 
 </body>
 </html>
