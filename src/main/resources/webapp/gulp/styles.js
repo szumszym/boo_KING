@@ -8,22 +8,17 @@ var $ = require('gulp-load-plugins')();
 
 gulp.task('styles', function () {
 
-    var sassOptions = {
-        outputStyle: 'expanded'
-    };
-
-    var injectFiles = gulp.src([
-        paths.src + '/{app,components}/**/*.scss',
-        '!' + paths.src + '/app/app.scss',
-        '!' + paths.src + '/app/vendor.scss'
+    var injectScssFiles = gulp.src([
+        paths.src + '/app/**/*.scss',
+        '!' + paths.src + '/app/app.scss'
     ], {read: false});
 
     var injectOptions = {
         transform: function (filePath) {
-            filePath = filePath.replace(paths.src + '/app/', '');
-            filePath = filePath.replace(paths.src + '/components/', '../components/');
-            filePath = filePath.replace('_', '');
-            filePath = filePath.replace('.scss', '');
+            filePath = filePath
+                .replace(paths.src + '/app/', '')
+                .replace('_', '')
+                .replace('.scss', '');
             return '@import \'' + filePath + '\';';
         },
         starttag: '// injector',
@@ -31,21 +26,15 @@ gulp.task('styles', function () {
         addRootSlash: false
     };
 
-    var appFilter = $.filter('app.scss');
+    var handleError = function (err) {
+        console.error(err.toString());
+        this.emit('end');
+    };
 
-    return gulp.src([
-            paths.src + '/app/app.scss',
-            paths.src + '/app/vendor.scss'
-        ])
+    return gulp.src(paths.src + '/app/app.scss')
         .pipe($.cssjoin())
-        .pipe(appFilter)
-        .pipe($.inject(injectFiles, injectOptions))
-        .pipe(appFilter.restore())
-        .pipe($.sass(sassOptions).on('error', $.sass.logError))
-        .pipe($.autoprefixer())
-        .on('error', function handleError(err) {
-            console.error(err.toString());
-            this.emit('end');
-        })
+        .pipe($.inject(injectScssFiles, injectOptions))
+        .pipe($.sass({outputStyle: 'expanded'}).on('error', $.sass.logError))
+        .pipe($.autoprefixer()).on('error', handleError)
         .pipe(gulp.dest(paths.tmp + '/serve/styles/'));
 });

@@ -4,21 +4,14 @@ var gulp = require('gulp');
 
 var paths = gulp.paths;
 
+var del = require('del');
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 
-gulp.task('partials', function () {
-    return gulp.src([
-            paths.src + '/{app,components}/**/*.html',
-            paths.tmp + '/{app,components}/**/*.html'
-        ])
-        .pipe($.htmlmin())
-        .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: 'app'
-        }))
-        .pipe(gulp.dest(paths.tmp + '/partials/'));
-});
+gulp.task('build', ['clean', 'html', 'images', 'fonts', 'misc']);
+gulp.task('build-debug', ['clean-tmp', 'html-debug']);
+
 
 gulp.task('html', ['inject', 'partials'], function () {
     var partialsInjectFile = gulp.src(paths.tmp + '/partials/templateCacheHtml.js', {read: false});
@@ -28,29 +21,37 @@ gulp.task('html', ['inject', 'partials'], function () {
         addRootSlash: false
     };
 
-    var htmlFilter = $.filter(['*.html', '!debug.html']);
-    var jsFilter = $.filter('**/*.js');
-    var cssFilter = $.filter('**/*.css');
-    var assets;
+    var htmlFilter = $.filter(['*.html', '!debug.html'], {restore: true});
+    var jsFilter = $.filter('**/*.js', {restore: true});
+    var cssFilter = $.filter('**/*.css', {restore: true});
 
     return gulp.src(paths.tmp + '/serve/*.html')
-        .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-        .pipe(assets = $.useref.assets())
-        .pipe($.rev())
+        .pipe($.inject(partialsInjectFile, partialsInjectOptions)) //inject HTML partials
+
+        .pipe($.useref())//compiles <!-- build: --> tags from index.html
+        .pipe($.preprocess())//compiles @if, @ifdef tags from HTML
+
+        //JS
         .pipe(jsFilter)
         .pipe($.ngAnnotate())
         .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
-        .pipe(jsFilter.restore())
+        .pipe($.rev())
+        .pipe(jsFilter.restore)
+
+        //CSS
         .pipe(cssFilter)
-        .pipe($.csso())
-        .pipe(cssFilter.restore())
-        .pipe(assets.restore())
-        .pipe($.useref())
+        .pipe($.csso({debug: true}))
+        .pipe($.rev())
+        .pipe(cssFilter.restore)
+
+        //update css/js revision in HTML
         .pipe($.revReplace())
+
+        //minify HTML
         .pipe(htmlFilter)
-        .pipe($.htmlmin())
-        .pipe(htmlFilter.restore())
-        .pipe($.preprocess())
+        .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
+        .pipe(htmlFilter.restore)
+
         .pipe(gulp.dest(paths.dist + '/'))
         .pipe($.size({title: paths.dist + '/', showFiles: true}));
 });
@@ -61,6 +62,18 @@ gulp.task('html-debug', ['inject', 'partials'], function () {
         .pipe($.rename('debug.html'))
         .pipe(gulp.dest(paths.src + '/'))
         .pipe($.size({title: paths.src + '/', showFiles: true}));
+});
+
+gulp.task('partials', function () {
+    return gulp.src([
+            paths.src + '/{app,components}/**/*.html',
+            paths.tmp + '/{app,components}/**/*.html'
+        ])
+        .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
+        .pipe($.angularTemplatecache('templateCacheHtml.js', {
+            module: 'app'
+        }))
+        .pipe(gulp.dest(paths.tmp + '/partials/'));
 });
 
 gulp.task('images', function () {
@@ -80,10 +93,12 @@ gulp.task('misc', function () {
         .pipe(gulp.dest(paths.dist + '/'));
 });
 
-gulp.task('clean', function (done) {
-    return gulp.src([paths.dist + '/', paths.tmp + '/'])
-        .pipe($.rimraf({force: true}));
+
+gulp.task('clean', function () {
+    return del.sync([paths.dist + '/', paths.tmp + '/'], {force: true});
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
-gulp.task('build-debug', ['html-debug', 'images', 'fonts', 'misc']);
+gulp.task('clean-tmp', function () {
+    return del.sync([paths.tmp + '/'], {force: true});
+});
+
