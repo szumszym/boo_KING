@@ -3,14 +3,20 @@
 var gulp = require('gulp');
 
 var paths = gulp.paths;
+var MINIFY_ENABLED = true;
 
 var del = require('del');
+var gulpif = require('gulp-if');
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 
 gulp.task('build', ['clean', 'html', 'images', 'fonts', 'misc']);
 gulp.task('build-debug', ['clean-tmp', 'html-debug']);
+gulp.task('build-dev', function () {
+    MINIFY_ENABLED = false;
+    gulp.start('build');
+});
 
 
 gulp.task('html', ['inject', 'partials'], function () {
@@ -34,13 +40,13 @@ gulp.task('html', ['inject', 'partials'], function () {
         //JS
         .pipe(jsFilter)
         .pipe($.ngAnnotate())
-        .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+        .pipe(gulpif(MINIFY_ENABLED, $.uglify({preserveComments: $.uglifySaveLicense})))
         .pipe($.rev())
         .pipe(jsFilter.restore)
 
         //CSS
         .pipe(cssFilter)
-        .pipe($.csso({debug: true}))
+        .pipe(gulpif(MINIFY_ENABLED, $.csso({debug: true})))
         .pipe($.rev())
         .pipe(cssFilter.restore)
 
@@ -49,7 +55,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 
         //minify HTML
         .pipe(htmlFilter)
-        .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
+        .pipe(gulpif(MINIFY_ENABLED, $.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true})))
         .pipe(htmlFilter.restore)
 
         .pipe(gulp.dest(paths.dist + '/'))
