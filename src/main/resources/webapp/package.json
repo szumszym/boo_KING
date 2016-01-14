@@ -9,6 +9,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "bower": "^1.7.2",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-angular-filesort": "~1.1.1",
@@ -32,7 +33,6 @@
     "gulp-size": "~2.0.0",
     "gulp-uglify": "~1.5.1",
     "gulp-useref": "~3.0.4",
-    "jshint-stylish": "~2.1.0",
     "main-bower-files": "~2.11.1",
     "require-dir": "~0.3.0",
     "uglify-save-license": "~0.4.1",
@@ -50,6 +50,6 @@
   },
   "homepage": "https://github.com/rastek/boo_KING#readme",
   "main": "gulpfile.js",
-  "author": "",
+  "author": "Szymon Szumski",
   "description": ""
 }

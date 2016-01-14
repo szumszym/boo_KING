@@ -1,6 +1,12 @@
 {
   "name": "boo_king",
   "description": "",
+  "authors": [
+    {
+      "name": "Szymon Szumski",
+      "url": "https://github.com/rastek"
+    }
+  ],
   "homepage": "https://github.com/rastek/boo_KING",
   "license": "MIT",
   "version": "0.0.1",

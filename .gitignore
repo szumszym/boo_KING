@@ -4,6 +4,7 @@ target
 *.log
 
 src/main/resources/static
+src/main/resources/webapp/node/
 src/main/resources/webapp/node_modules/
 src/main/resources/webapp/bower_components/
 src/main/resources/webapp/.sass-cache/
