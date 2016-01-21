@@ -9,17 +9,19 @@ var $ = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 
 gulp.task('inject', ['styles'], function () {
-
+    var services = gulp.config.mock ? '!**/services.js' : '!**/servicesMock.js';
     var injectStyles = gulp.src([
         paths.tmp + '/serve/**/*.css',
         '!' + paths.tmp + '/serve/styles/vendor.css'
     ], {read: false});
 
     var injectScripts = gulp.src([
-        paths.src + '/app/**/*.js',
-        '!' + paths.src + '/app/**/*.spec.js',
-        '!' + paths.src + '/app/**/*.mock.js'
-    ]).pipe($.angularFilesort());
+            paths.src + '/app/**/*.js',
+            '!' + paths.src + '/app/**/*.spec.js',
+            '!' + paths.src + '/app/**/*.mock.js',
+            services
+        ])
+        .pipe($.angularFilesort());
 
     var injectOptions = {
         ignorePath: [paths.src, paths.tmp + '/serve'],

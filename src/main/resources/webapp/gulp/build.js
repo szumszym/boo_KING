@@ -11,13 +11,9 @@ var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 
-gulp.task('build', ['clean', 'html', 'images', 'fonts', 'misc']);
-gulp.task('build-debug', ['clean-tmp', 'html-debug']);
-gulp.task('build-dev', function () {
-    MINIFY_ENABLED = false;
-    gulp.start('build');
-});
-
+gulp.task('build', ['config-prod', 'clean', 'html', 'images', 'fonts', 'misc', 'data']);
+gulp.task('build-dev', ['config-dev', 'clean', 'html', 'images', 'fonts', 'misc', 'data']);
+gulp.task('build-debug', ['config-debug', 'clean-tmp', 'html-debug']);
 
 gulp.task('html', ['inject', 'partials'], function () {
     var partialsInjectFile = gulp.src(paths.tmp + '/partials/templateCacheHtml.js', {read: false});
@@ -40,13 +36,13 @@ gulp.task('html', ['inject', 'partials'], function () {
         //JS
         .pipe(jsFilter)
         .pipe($.ngAnnotate())
-        .pipe(gulpif(MINIFY_ENABLED, $.uglify({preserveComments: $.uglifySaveLicense})))
+        .pipe(gulpif(gulp.config.minify, $.uglify({preserveComments: $.uglifySaveLicense})))
         .pipe($.rev())
         .pipe(jsFilter.restore)
 
         //CSS
         .pipe(cssFilter)
-        .pipe(gulpif(MINIFY_ENABLED, $.csso({debug: true})))
+        .pipe(gulpif(gulp.config.minify, $.csso({debug: true})))
         .pipe($.rev())
         .pipe(cssFilter.restore)
 
@@ -55,7 +51,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 
         //minify HTML
         .pipe(htmlFilter)
-        .pipe(gulpif(MINIFY_ENABLED, $.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true})))
+        .pipe(gulpif(gulp.config.minify, $.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true})))
         .pipe(htmlFilter.restore)
 
         .pipe(gulp.dest(paths.dist + '/'))
@@ -64,7 +60,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 
 gulp.task('html-debug', ['inject', 'partials'], function () {
     return gulp.src(paths.tmp + '/serve/index.html')
-        .pipe($.preprocess({context: {DEBUG: true}}))
+        .pipe($.preprocess({context: {DEBUG: (gulp.config.env === 'debug')}}))
         .pipe($.rename('debug.html'))
         .pipe(gulp.dest(paths.src + '/'))
         .pipe($.size({title: paths.src + '/', showFiles: true}));
@@ -97,6 +93,15 @@ gulp.task('fonts', function () {
 gulp.task('misc', function () {
     return gulp.src(paths.src + '/**/*.ico')
         .pipe(gulp.dest(paths.dist + '/'));
+});
+
+gulp.task('data', function () {
+    var src = [paths.src + '/data/**/*'];
+    if (!gulp.config.mock) {
+        src.push('!' + paths.src + '/data/mock');
+    }
+    return gulp.src(src)
+        .pipe(gulp.dest(paths.dist + '/data/'));
 });
 
 

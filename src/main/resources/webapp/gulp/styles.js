@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var paths = gulp.paths;
 
 var $ = require('gulp-load-plugins')();
+var gulpif = require('gulp-if');
 
 gulp.task('styles', function () {
 
@@ -31,10 +32,13 @@ gulp.task('styles', function () {
         this.emit('end');
     };
 
+    var isDebug = gulp.config.env === 'debug';
+    var dist = isDebug ? paths.src : paths.tmp + '/serve/styles/';
     return gulp.src(paths.src + '/app/app.scss')
         .pipe($.cssjoin())
         .pipe($.inject(injectScssFiles, injectOptions))
         .pipe($.sass({outputStyle: 'expanded'}).on('error', $.sass.logError))
         .pipe($.autoprefixer()).on('error', handleError)
-        .pipe(gulp.dest(paths.tmp + '/serve/styles/'));
+        .pipe(gulpif(isDebug, $.rename('debug.css')))
+        .pipe(gulp.dest(dist));
 });
