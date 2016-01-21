@@ -4,13 +4,12 @@ var gulp = require('gulp');
 
 gulp.paths = {
     src: 'src',
-    dist: '../static',
-    tmp: '.tmp'
+    dist: '../static'
 };
 
 gulp.task('config-prod', function () {
     gulp.config = {
-        env: 'prod',
+        debug: false,
         mock: false,
         minify: true
     }
@@ -18,7 +17,7 @@ gulp.task('config-prod', function () {
 
 gulp.task('config-dev', function () {
     gulp.config = {
-        env: 'dev',
+        debug: false,
         mock: false,
         minify: false
     }
@@ -26,7 +25,7 @@ gulp.task('config-dev', function () {
 
 gulp.task('config-debug', function () {
     gulp.config = {
-        env: 'debug',
+        debug: true,
         mock: true,
         minify: false
     }
