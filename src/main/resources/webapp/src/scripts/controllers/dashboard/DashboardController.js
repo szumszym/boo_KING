@@ -45,7 +45,7 @@ angular
         function showActions($event) {
             $mdBottomSheet.show({
                 parent: angular.element(document.getElementById('content')),
-                templateUrl: 'app/views/dashboard/bottomSheet.html',
+                templateUrl: 'views/dashboard/bottomSheet.html',
                 controller: ['$mdBottomSheet', SheetController],
                 controllerAs: "vm",
                 bindToController: true,

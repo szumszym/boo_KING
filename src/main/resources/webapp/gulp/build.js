@@ -68,12 +68,12 @@ gulp.task('html-debug', ['inject', 'partials'], function () {
 
 gulp.task('partials', function () {
     return gulp.src([
-            paths.src + '/{app,components}/**/*.html',
-            paths.tmp + '/{app,components}/**/*.html'
+            paths.src + '/views/**/*.html'
         ])
         .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
         .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: 'app'
+            module: 'app',
+            root: 'views/'
         }))
         .pipe(gulp.dest(paths.tmp + '/partials/'));
 });

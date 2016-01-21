@@ -1,7 +1,7 @@
 $tile-border-radius: 10px;
 
 body {
-  background: url(assets/images/background_1.jpg) no-repeat center center fixed;
+  background: url(../assets/images/background_1.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -131,4 +131,11 @@ body {
 
 .boo__start-filter-container {
   margin-bottom: 30px;
+}
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width: 500px;
+  height: 350px;
 }

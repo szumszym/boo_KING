@@ -6,27 +6,27 @@ angular.module('app')
         $stateProvider
             .state('start', {
                 url: '',
-                templateUrl: 'app/views/start.html',
+                templateUrl: 'views/start.html',
                 controller: 'StartController',
                 controllerAs: 'vm'
             })
             .state('dashboard', {
                 url: '',
-                templateUrl: 'app/views/dashboard/dashboard.html',
+                templateUrl: 'views/dashboard.html',
                 controller: 'DashboardController',
                 controllerAs: 'vm',
                 abstract: true
             })
             .state('dashboard.summary', {
                 url: '/summary',
-                templateUrl: 'app/views/summary.html',
+                templateUrl: 'views/dashboard/pages/summary.html',
                 data: {
                     title: 'summary'
                 }
             })
             .state('dashboard.profile', {
                 url: '/profile',
-                templateUrl: 'app/views/dashboard/pages/profile.html',
+                templateUrl: 'views/dashboard/pages/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 data: {
@@ -37,13 +37,13 @@ angular.module('app')
                 url: '/table',
                 controller: 'TableController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/dashboard/pages/table.html',
+                templateUrl: 'views/dashboard/pages/table.html',
                 data: {
                     title: 'Table'
                 }
             });
 
-        $urlRouterProvider.otherwise('/summary');
+        $urlRouterProvider.otherwise('/');
 
         $mdThemingProvider
             .theme('default')

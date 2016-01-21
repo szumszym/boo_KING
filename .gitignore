@@ -10,4 +10,4 @@ src/main/resources/webapp/bower_components/
 src/main/resources/webapp/.sass-cache/
 src/main/resources/webapp/.tmp/
 src/main/resources/webapp/src/debug.html
-src/main/resources/webapp/src/debug.css
+/src/main/resources/webapp/src/styles/**/*.css
