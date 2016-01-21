@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Marina Palms Hotel",
+    "pic": "data/mock/hotel/1_main.jpg",
+    "description": "Lorem1 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 2
+  },
+  {
+    "name": "King's Plaza Resort",
+    "pic": "data/mock/hotel/2_main.jpg",
+    "description": "Lorem2 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 3
+  },
+  {
+    "name": "Emerald Haven Resort & Spa",
+    "pic": "data/mock/hotel/3_main.jpg",
+    "description": "Lorem3 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 3
+  },
+  {
+    "name": "Illustrious Nimbus Hotel",
+    "pic": "data/mock/hotel/4_main.jpg",
+    "description": "Lorem4 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 4
+  },
+  {
+    "name": "Ebony Canyon Hotel",
+    "pic": "data/mock/hotel/5_main.jpg",
+    "description": "Lorem5 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 2
+  },
+  {
+    "name": "Sublime Universe Resort",
+    "pic": "data/mock/hotel/6_main.jpg",
+    "description": "Lorem6 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 2
+  },
+  {
+    "name": "Rainbow Hotel",
+    "pic": "data/mock/hotel/7_main.jpg",
+    "description": "Lorem7 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 5
+  },
+  {
+    "name": "Utopia Resort",
+    "pic": "data/mock/hotel/8_main.jpg",
+    "description": "Lorem8 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 4
+  },
+  {
+    "name": "Breakwater Resort",
+    "pic": "data/mock/hotel/9_main.jpg",
+    "description": "Lorem9 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 1
+  },
+  {
+    "name": "Courtyard Hotel",
+    "pic": "data/mock/hotel/10_main.jpg",
+    "description": "Lorem9 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 1
+  },
+  {
+    "name": "Prism Hotel",
+    "pic": "data/mock/hotel/11_main.jpg",
+    "description": "Lorem9 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 2
+  },
+  {
+    "name": "Sapphire Coast Hotel",
+    "pic": "data/mock/hotel/12_main.jpg",
+    "description": "Lorem9 impsumlorem impsumlo rem impsumloremim psumlor em. Impsum lor emimpsum loremimp sum.",
+    "stars": 3
+  }
+]

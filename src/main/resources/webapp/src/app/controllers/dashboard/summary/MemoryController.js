@@ -34,7 +34,9 @@
                 color: ['rgb(0, 150, 136)', 'rgb(191, 191, 191)'],
                 showLabels: false,
                 showLegend: false,
-                tooltips: false,
+                tooltip: {
+                    enabled: false
+                },
                 title: '42%',
                 titleOffset: -10,
                 margin: {bottom: -80, left: -20, right: -20}

@@ -1,13 +1,6 @@
-(function () {
-
-    angular
-        .module('app')
-        .controller('MainController', [
-            'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast',
-            MainController
-        ]);
-
-    function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
+angular
+    .module('app')
+    .controller('DashboardController', function DashboardController($mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
         var vm = this;
 
         vm.menuItems = [];
@@ -17,11 +10,23 @@
         vm.title = $state.current.data.title;
         vm.showSimpleToast = showSimpleToast;
 
-        navService
-            .loadAllItems()
-            .then(function (menuItems) {
-                vm.menuItems = [].concat(menuItems);
-            });
+        vm.menuItems = [
+            {
+                name: 'Summary',
+                icon: 'dashboard',
+                sref: '.summary'
+            },
+            {
+                name: 'Profile',
+                icon: 'person',
+                sref: '.profile'
+            },
+            {
+                name: 'Table',
+                icon: 'view_module',
+                sref: '.table'
+            }
+        ];
 
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);
@@ -40,7 +45,7 @@
         function showActions($event) {
             $mdBottomSheet.show({
                 parent: angular.element(document.getElementById('content')),
-                templateUrl: 'app/views/partials/bottomSheet.html',
+                templateUrl: 'app/views/dashboard/bottomSheet.html',
                 controller: ['$mdBottomSheet', SheetController],
                 controllerAs: "vm",
                 bindToController: true,
@@ -79,6 +84,5 @@
                     .position('top right')
             );
         }
-    }
+    });
 
-})();

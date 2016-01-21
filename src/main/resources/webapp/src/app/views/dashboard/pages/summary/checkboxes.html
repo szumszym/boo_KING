@@ -5,7 +5,7 @@
         </md-button>
     </div>
 
-    <md-checkbox ng-repeat="todo in vm.todos" ng-model="todo.done">
+    <md-checkbox ng-repeat="todo in vm.todos" ng-model="todo.done" aria-label="">
         {{todo.text}}
     </md-checkbox>
 
@@ -14,7 +14,7 @@
             <label>Write some todo task here...</label>
             <input ng-model="vm.todoText">
         </md-input-container>
-        <md-button class="md-fab md-warn" aria-label="Eat cake">
+        <md-button type="submit" class="md-fab md-warn" aria-label="Eat cake">
             <i class="material-icons">add</i>
         </md-button>
         <md-button class="md-primary" ng-click="vm.archive($event)">

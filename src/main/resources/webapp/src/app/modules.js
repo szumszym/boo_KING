@@ -1,2 +1,2 @@
-angular.module('app', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
-    'ui.router', 'nvd3', 'ngMaterial', 'ngFileUpload', 'ngImgCrop']);
+angular.module('app', ['ngAnimate', 'ngCookies', 'ngSanitize',
+    'ui.router', 'nvd3', 'ngResource', 'ngMaterial', 'ngFileUpload', 'ngImgCrop']);

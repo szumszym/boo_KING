@@ -4,40 +4,46 @@ angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                       $mdIconProvider) {
         $stateProvider
-            .state('home', {
+            .state('start', {
                 url: '',
-                templateUrl: 'app/views/main.html',
-                controller: 'MainController',
+                templateUrl: 'app/views/start.html',
+                controller: 'StartController',
+                controllerAs: 'vm'
+            })
+            .state('dashboard', {
+                url: '',
+                templateUrl: 'app/views/dashboard/dashboard.html',
+                controller: 'DashboardController',
                 controllerAs: 'vm',
                 abstract: true
             })
-            .state('home.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'app/views/dashboard.html',
+            .state('dashboard.summary', {
+                url: '/summary',
+                templateUrl: 'app/views/summary.html',
                 data: {
-                    title: 'Dashboard'
+                    title: 'summary'
                 }
             })
-            .state('home.profile', {
+            .state('dashboard.profile', {
                 url: '/profile',
-                templateUrl: 'app/views/profile.html',
+                templateUrl: 'app/views/dashboard/pages/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 data: {
                     title: 'Profile'
                 }
             })
-            .state('home.table', {
+            .state('dashboard.table', {
                 url: '/table',
                 controller: 'TableController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/table.html',
+                templateUrl: 'app/views/dashboard/pages/table.html',
                 data: {
                     title: 'Table'
                 }
             });
 
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/summary');
 
         $mdThemingProvider
             .theme('default')
