@@ -1,37 +1,21 @@
 'use strict';
 
 var gulp = require('gulp');
-
-var paths = gulp.paths;
-var MINIFY_ENABLED = true;
-
-var del = require('del');
 var gulpif = require('gulp-if');
-var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
-});
+var wiredep = require('wiredep').stream;
+var $ = require('gulp-load-plugins')({pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']});
 
-gulp.task('build', ['config-prod', 'clean', 'html', 'images', 'fonts', 'misc', 'data']);
-gulp.task('build-dev', ['config-dev', 'clean', 'html', 'images', 'fonts', 'misc', 'data']);
+gulp.task('build', ['config-prod', 'clean', 'html', 'copy-images', 'copy-fonts', 'copy-misc', 'copy-data']);
+gulp.task('build-dev', ['config-dev', 'clean', 'html', 'copy-images', 'copy-fonts', 'copy-misc', 'copy-data']);
 gulp.task('build-debug', ['config-debug', 'clean-tmp', 'html-debug']);
 
-gulp.task('html', ['inject', 'partials'], function () {
-    var partialsInjectFile = gulp.src(paths.tmp + '/partials/templateCacheHtml.js', {read: false});
-    var partialsInjectOptions = {
-        starttag: '<!-- inject:partials -->',
-        ignorePath: paths.tmp + '/partials',
-        addRootSlash: false
-    };
-
+gulp.task('html', ['inject'], function () {
     var htmlFilter = $.filter(['*.html', '!debug.html'], {restore: true});
     var jsFilter = $.filter('**/*.js', {restore: true});
     var cssFilter = $.filter('**/*.css', {restore: true});
 
-    return gulp.src(paths.tmp + '/serve/*.html')
-        .pipe($.inject(partialsInjectFile, partialsInjectOptions)) //inject HTML partials
-
+    return gulp.src(gulp.paths.tmp + '/serve/*.html')
         .pipe($.useref())//compiles <!-- build: --> tags from index.html
-        .pipe($.preprocess())//compiles @if, @ifdef tags from HTML
 
         //JS
         .pipe(jsFilter)
@@ -54,62 +38,53 @@ gulp.task('html', ['inject', 'partials'], function () {
         .pipe(gulpif(gulp.config.minify, $.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true})))
         .pipe(htmlFilter.restore)
 
-        .pipe(gulp.dest(paths.dist + '/'))
-        .pipe($.size({title: paths.dist + '/', showFiles: true}));
+        .pipe(gulp.dest(gulp.paths.dist + '/'))
+        .pipe($.size({title: gulp.paths.dist + '/', showFiles: true}));
 });
 
-gulp.task('html-debug', ['inject', 'partials'], function () {
-    return gulp.src(paths.tmp + '/serve/index.html')
-        .pipe($.preprocess({context: {DEBUG: (gulp.config.env === 'debug')}}))
+gulp.task('html-debug', ['inject'], function () {
+    return gulp.src(gulp.paths.tmp + '/serve/index.html')
         .pipe($.rename('debug.html'))
-        .pipe(gulp.dest(paths.src + '/'))
-        .pipe($.size({title: paths.src + '/', showFiles: true}));
+        .pipe(gulp.dest(gulp.paths.src + '/'))
+        .pipe($.size({title: gulp.paths.src + '/', showFiles: true}));
 });
 
-gulp.task('partials', function () {
-    return gulp.src([
-            paths.src + '/views/**/*.html'
+gulp.task('inject', ['compile-styles', 'compile-templates'], function () {
+
+    var injectStyles = gulp.src([
+        gulp.paths.src + '/styles/**/*.css'
+    ], {read: false});
+
+    var injectScripts = gulp.src([
+            gulp.paths.src + '/scripts/**/*.js',
+            gulp.paths.src + '/views/templates.js',
+            (gulp.config.mock ? '!**/services.js' : '!**/servicesMock.js')
         ])
-        .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
-        .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: 'app',
-            root: 'views/'
-        }))
-        .pipe(gulp.dest(paths.tmp + '/partials/'));
+        .pipe($.angularFilesort());
+
+    var injectTemplates = gulp.src(gulp.paths.src + '/views/templates.js', {read: false});
+
+    var injectOptions = {
+        ignorePath: [gulp.paths.src],
+        addRootSlash: false
+    };
+
+    var injectTemplatesOptions = {
+        starttag: '<!-- inject:templates -->',
+        addRootSlash: false
+    };
+
+    var wiredepOptions = {
+        directory: 'bower_components',
+        exclude: [/bootstrap\.css/, /foundation\.css/]
+    };
+
+
+    return gulp.src([gulp.paths.src + '/*.html', '!' + gulp.paths.src + '/debug.html'])
+        .pipe(gulpif(gulp.config.env !== 'debug', $.inject(injectTemplates, injectTemplatesOptions)))
+        .pipe($.inject(injectStyles, injectOptions))
+        .pipe($.inject(injectScripts, injectOptions))
+        .pipe(wiredep(wiredepOptions))
+        .pipe(gulp.dest(gulp.paths.tmp + '/serve'));
+
 });
-
-gulp.task('images', function () {
-    return gulp.src(paths.src + '/assets/images/**/*')
-        .pipe(gulp.dest(paths.dist + '/assets/images/'));
-});
-
-gulp.task('fonts', function () {
-    return gulp.src($.mainBowerFiles())
-        .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-        .pipe($.flatten())
-        .pipe(gulp.dest(paths.dist + '/fonts/'));
-});
-
-gulp.task('misc', function () {
-    return gulp.src(paths.src + '/**/*.ico')
-        .pipe(gulp.dest(paths.dist + '/'));
-});
-
-gulp.task('data', function () {
-    var src = [paths.src + '/data/**/*'];
-    if (!gulp.config.mock) {
-        src.push('!' + paths.src + '/data/mock');
-    }
-    return gulp.src(src)
-        .pipe(gulp.dest(paths.dist + '/data/'));
-});
-
-
-gulp.task('clean', function () {
-    return del.sync([paths.dist + '/', paths.tmp + '/'], {force: true});
-});
-
-gulp.task('clean-tmp', function () {
-    return del.sync([paths.tmp + '/'], {force: true});
-});
-
