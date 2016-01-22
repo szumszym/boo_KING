@@ -1,2 +1,3 @@
 angular.module('app', ['ngAnimate', 'ngCookies', 'ngSanitize',
-    'ui.router', 'nvd3', 'ngResource', 'ngMaterial', 'ngFileUpload', 'ngImgCrop']);
+    'ui.router', 'ui.bootstrap', 'ui.bootstrap.carousel',
+    'nvd3', 'ngResource', 'ngMaterial', 'ngFileUpload', 'ngImgCrop']);
