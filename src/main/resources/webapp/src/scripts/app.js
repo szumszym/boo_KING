@@ -94,4 +94,7 @@ angular.module('app')
         });
 
         $mdIconProvider.icon('user', 'assets/images/user.svg', 64);
+    })
+    .run(function ($rootScope, $mdMedia) {
+        $rootScope.mdMedia = $mdMedia;
     });
