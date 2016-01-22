@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('StartController', function ($scope, $timeout, $mdDialog, Hotels) {
+    .controller('StartController', function ($scope, $state, $timeout, $mdDialog, Hotels) {
 
         $scope.range = function (count) {
             var ratings = [];
@@ -54,6 +54,9 @@ angular.module('app')
             $scope.tiles = tiles;
         });
 
+        $scope.goToHotel = function (hotel) {
+            $state.go('main.hotel', {hotel: hotel}, {location: false});
+        };
         $scope.openDetailsPopup = function (hotel) {
             $mdDialog
                 .show($mdDialog.confirm({

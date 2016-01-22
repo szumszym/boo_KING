@@ -4,14 +4,23 @@ angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                       $mdIconProvider) {
         $stateProvider
-            .state('start', {
-                url: '',
-                templateUrl: 'views/start.html',
-                controller: 'StartController',
-                controllerAs: 'vm'
+            .state('main', {
+                templateUrl: 'views/main.html',
+                controller: 'MainController',
+                abstract: true
+            })
+            .state('main.start', {
+                url: '/',
+                templateUrl: 'views/main/start.html',
+                controller: 'StartController'
+            })
+            .state('main.hotel', {
+                url: '/hotel',
+                params: {'hotel': null},
+                templateUrl: 'views/main/hotel.html',
+                controller: 'HotelController'
             })
             .state('dashboard', {
-                url: '',
                 templateUrl: 'views/dashboard.html',
                 controller: 'DashboardController',
                 controllerAs: 'vm',
