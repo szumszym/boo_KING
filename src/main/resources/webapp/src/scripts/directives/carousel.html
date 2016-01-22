@@ -1,0 +1,16 @@
+<div>
+    <uib-carousel interval="interval" ng-class="{'carousel-no-indicators': thumbs}">
+        <uib-slide ng-repeat="slide in slides" active="slide.selected" index="$index">
+            <img ng-src="{{slide.url}}">
+            <div ng-if="caption" class="carousel-caption">
+                <h4>Slide {{slide.title}}</h4>
+                <p>{{slide.description}}</p>
+            </div>
+        </uib-slide>
+    </uib-carousel>
+    <ul class="carousel-thumbs" ng-show="thumbs">
+        <li ng-repeat="slide in slides" ng-class="{'active': slide.selected}">
+            <img ng-src="{{slide.thumb.url}}" ng-click="changeSelected(slide)">
+        </li>
+    </ul>
+</div>

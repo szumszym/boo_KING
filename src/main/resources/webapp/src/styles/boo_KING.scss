@@ -140,3 +140,19 @@ body {
   width: 500px;
   height: 350px;
 }
+
+md-content {
+  background: none;
+}
+
+.boo__main-hotel-container {
+  md-card {
+    width: 70%;
+    margin: 0 auto;
+
+    md-card-title md-card-title-media {
+      margin-top: 0
+    }
+  }
+
+}

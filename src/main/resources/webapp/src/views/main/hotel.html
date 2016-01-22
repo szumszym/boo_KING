@@ -1,0 +1,19 @@
+<md-content class="boo__main-hotel-container md-padding" layout="column">
+    <md-card>
+        <md-card-title layout-xs="column" layout="row">
+            <md-card-title-text flex>
+                <span class="md-headline">{{hotel.name}}</span>
+                <span class="md-subhead">{{hotel.description}}</span>
+            </md-card-title-text>
+            <md-card-title-media flex>
+                <div class="card-media">
+                    <carousel slides="photos" thumbs="mdMedia('gt-sm')"></carousel>
+                </div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button>Select room(s)</md-button>
+            <md-button>Action 2</md-button>
+        </md-card-actions>
+    </md-card>
+</md-content>

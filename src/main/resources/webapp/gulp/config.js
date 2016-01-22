@@ -33,5 +33,7 @@ gulp.task('config-dev-mock', function () {
 gulp.task('config-debug', function () {
     gulp.config = {
         debug: true,
+        mock: true,
+        minify: false
     }
 });

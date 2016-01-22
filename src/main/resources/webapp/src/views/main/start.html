@@ -43,7 +43,7 @@
                   md-colspan-sm="{{tile.colspan > 2 ? 2 :1}}"
                   md-colspan-xs="1"
                   md-rowspan-xs="1"
-                  ng-style="{'background-image':'url('+tile.hotel.pic+')'}"
+                  ng-style="{'background-image':'url('+tile.hotel.photos[0].url+')'}"
                   ng-click="goToHotel(tile.hotel)">
 
         <md-grid-tile-header>
