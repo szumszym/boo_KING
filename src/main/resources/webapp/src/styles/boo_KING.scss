@@ -147,11 +147,27 @@ md-content {
 
 .boo__main-hotel-container {
   md-card {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
 
-    md-card-title md-card-title-media {
-      margin-top: 0
+    md-card-title {
+      margin-top: 0;
+      md-card-title-text {
+        padding: 0 10px;
+
+        .md-subhead {
+          padding: 10px 0;
+          text-align: justify;
+        }
+      }
+      md-card-title-media {
+        margin-top: 0;
+        padding: 0 10px;
+        max-width: 600px;
+
+      }
+
     }
   }
 
