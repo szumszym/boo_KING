@@ -22,11 +22,16 @@ gulp.task('config-dev', function () {
         minify: false
     }
 });
+gulp.task('config-dev-mock', function () {
+    gulp.config = {
+        debug: false,
+        mock: true,
+        minify: false
+    }
+});
 
 gulp.task('config-debug', function () {
     gulp.config = {
         debug: true,
-        mock: true,
-        minify: false
     }
 });
