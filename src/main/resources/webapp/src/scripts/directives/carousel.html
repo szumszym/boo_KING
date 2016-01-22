@@ -8,7 +8,7 @@
             </div>
         </uib-slide>
     </uib-carousel>
-    <ul class="carousel-thumbs" ng-show="thumbs">
+    <ul class="carousel-thumbs" ng-if="slides.length > 1 && thumbs">
         <li ng-repeat="slide in slides" ng-class="{'active': slide.selected}">
             <img ng-src="{{slide.thumb.url}}" ng-click="changeSelected(slide)">
         </li>

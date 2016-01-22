@@ -16,7 +16,7 @@ angular.module('app')
             })
             .state('main.hotel', {
                 url: '/hotel',
-                params: {'hotel': null},
+                params: {'hotel': {}},
                 templateUrl: 'views/main/hotel.html',
                 controller: 'HotelController'
             })

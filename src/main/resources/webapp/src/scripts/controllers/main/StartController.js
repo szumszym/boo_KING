@@ -1,13 +1,7 @@
 angular.module('app')
-    .controller('StartController', function ($scope, $state, $timeout, $mdDialog, Hotels) {
+    .controller('StartController', function ($scope, $state, $timeout, $mdDialog, Hotels, utils) {
 
-        $scope.range = function (count) {
-            var ratings = [];
-            for (var i = 0; i < count; i++) {
-                ratings.push(i)
-            }
-            return ratings;
-        };
+        $scope.range = utils.range;
 
         $scope.city = null;
         $scope.adult = null;
@@ -15,9 +9,9 @@ angular.module('app')
         $scope.room = null;
 
         $scope.cities = null;
-        $scope.adults = $scope.range(30);
-        $scope.children = $scope.range(30);
-        $scope.rooms = $scope.range(20);
+        $scope.adults = utils.range(30, 1);
+        $scope.children = utils.range(30);
+        $scope.rooms = utils.range(20, 1);
 
         $scope.loadCities = function () {
             /*TODO: load from service*/
@@ -55,18 +49,18 @@ angular.module('app')
         });
 
         $scope.goToHotel = function (hotel) {
-            $state.go('main.hotel', {hotel: hotel}, {location: false});
+            $state.go('main.hotel', {hotel: hotel, name: hotel.name});
         };
-        $scope.openDetailsPopup = function (hotel) {
-            $mdDialog
-                .show($mdDialog.confirm({
-                    title: hotel.name,
-                    content: hotel.description,
-                    ok: 'Select room',
-                    cancel: 'Close'
-                }))
-                .finally(function () {
-                    alert = undefined;
-                });
-        };
+        /*    $scope.openDetailsPopup = function (hotel) {
+         $mdDialog
+         .show($mdDialog.confirm({
+         title: hotel.name,
+         content: hotel.description,
+         ok: 'Select room',
+         cancel: 'Close'
+         }))
+         .finally(function () {
+         alert = undefined;
+         });
+         };*/
     });

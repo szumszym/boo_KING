@@ -26,7 +26,8 @@
     "angular-resource": "~1.4.8",
     "hover": "~2.0.2",
     "angular-bootstrap": "~1.1.0",
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "angular-repeat-n": "~0.1.5"
   },
   "resolutions": {
     "angular": "~1.4.8",
