@@ -24,7 +24,7 @@ gulp.task('copy-misc', function () {
 
 gulp.task('copy-data', function () {
     var src = [gulp.paths.src + '/data/**'];
-    if (!gulp.config.debug) {
+    if (!gulp.config.mock) {
         src.push('!' + gulp.paths.src + '/data/mock/**');
         src.push('!' + gulp.paths.src + '/data/mock');
     }

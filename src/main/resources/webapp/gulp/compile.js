@@ -67,12 +67,11 @@ gulp.task('compile-html', ['compile-styles', 'compile-templates'], function () {
 
 gulp.task('compile-templates', function () {
     return gulp.config.debug ? null : gulp.src([
-            gulp.paths.src + '/views/**/*.html'
+            gulp.paths.src + '/{scripts,views}/**/*.html'
         ])
         .pipe($.htmlmin({collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
         .pipe($.angularTemplatecache('templates.js', {
-            module: 'app',
-            root: 'views/'
+            module: 'app'
         }))
         .pipe(gulp.dest(gulp.paths.src + '/scripts/'));
 });
