@@ -3,11 +3,11 @@ target
 *.iml
 *.log
 
-/src/main/resources/static
-/src/main/resources/webapp/node/
-/src/main/resources/webapp/node_modules/
-/src/main/resources/webapp/bower_components/
+/src/main/resources/static/build
+/src/main/resources/static/src/node/
+/src/main/resources/static/src/node_modules/
+/src/main/resources/static/src/bower_components/
 
-/src/main/resources/webapp/src/index.html
-/src/main/resources/webapp/src/styles/**/*.css
-/src/main/resources/webapp/src/scripts/templates.js
+/src/main/resources/static/src/src/index.html
+/src/main/resources/static/src/src/styles/**/*.css
+/src/main/resources/static/src/src/scripts/templates.js

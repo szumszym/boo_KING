@@ -4,7 +4,7 @@ var gulp = require('gulp');
 
 gulp.paths = {
     src: 'src',
-    dist: '../static'
+    dist: '../build'
 };
 
 gulp.task('config-prod', function () {

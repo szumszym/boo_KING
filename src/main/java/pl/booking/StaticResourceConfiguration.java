@@ -6,6 +6,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import static java.util.Arrays.asList;
+
 /**
  * Created by Szymon on 1/7/2016.
  */
@@ -21,5 +23,15 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
         registry
                 .addResourceHandler("/files/**")
                 .addResourceLocations("file://" + directory + "/");
+
+        if (asList(env.getActiveProfiles()).contains("dev")) {
+            registry
+                    .addResourceHandler("*/**")
+                    .addResourceLocations("classpath:/static/src/");
+        } else {
+            registry
+                    .addResourceHandler("*/**")
+                    .addResourceLocations("classpath:/static/build/");
+        }
     }
 }
