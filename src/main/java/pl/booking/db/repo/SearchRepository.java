@@ -1,14 +1,14 @@
 package pl.booking.db.repo;
 
 import org.springframework.data.jpa.repository.Query;
-import pl.booking.reflection.CustomRepository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Szymon on 4/11/2016.
  */
-public interface SearchRepository extends CustomRepository {
+public interface SearchRepository {
 
     @Query("select distinct a.city from Hotel h join h.address a")
     List<String> findAllCities();
@@ -21,4 +21,7 @@ public interface SearchRepository extends CustomRepository {
 
     @Query("select avg(a.apartmentNo) from Address a")
     Double findAvgApartmentNo();
+
+    @Query("select a.country, count(a.city) from Address a group by a.country order by count(a.city) desc")
+    Map<String, Long> findCityCountByCountry();
 }
