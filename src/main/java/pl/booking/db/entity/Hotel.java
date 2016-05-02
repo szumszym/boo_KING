@@ -30,7 +30,9 @@ public class Hotel implements Serializable {
     private String phoneNumber;
     @Column(nullable = false)
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "address_id", nullable = false)
+    // @PrimaryKeyJoinColumn
     private Address address;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(

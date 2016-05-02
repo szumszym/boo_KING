@@ -91,7 +91,7 @@
                     <include>**/*</include>
                 </includes>
                 <excludes>
-                    <exclude>webapp/**/*</exclude>
+                    <exclude>static/src/**/*</exclude>
                 </excludes>
             </resource>
         </resources>
