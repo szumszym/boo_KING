@@ -1,14 +1,10 @@
-package pl.booking.api.controllers;
+package pl.booking.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
@@ -23,20 +19,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by Szymon on 1/7/2016.
+ * Created by Szymon on 4/11/2016.
  */
-@Controller
-@RequestMapping("/api")
-public class UploadController {
+@Service
+public class UploadService {
 
-    DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
     @Autowired
     private Environment env;
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity<?> uploadFile(@RequestParam("type") String type, @RequestParam("file") MultipartFile file) {
+    private DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 
+
+    public ResponseEntity<?> uploadFile(String type, MultipartFile file) {
         String filepath;
         String filename = df.format(Calendar.getInstance().getTime()) + ".jpg";
         try {
@@ -54,6 +48,7 @@ public class UploadController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(filename);
     }
+
 
     private Path resolvePath(String type) throws IOException {
         String directory = env.getProperty("booking.paths.uploadedFiles");
@@ -78,4 +73,5 @@ public class UploadController {
             return path;
         }
     }
+
 }
