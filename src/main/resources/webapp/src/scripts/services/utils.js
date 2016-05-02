@@ -8,11 +8,11 @@ angular.module('app')
             }
         };
 
-        this.range = function (count, start) {
+        this.range = function (count, start, prop) {
             start = start || 0;
             var range = [];
-            for (var i = 0 + start; i < count + start; i++) {
-                range.push(i)
+            for (var i = 0 + start; i <= count + start; i++) {
+                range.push(!!prop ? {}[prop] = i : i)
             }
             return range;
         };

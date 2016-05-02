@@ -172,3 +172,68 @@ md-content {
   }
 
 }
+
+.md-datepicker-container {
+  display: inline-block;
+  position: relative;
+  padding: 2px;
+  margin: 18px 0;
+  vertical-align: middle;
+}
+
+.md-datepicker-container label:not(.md-no-float):not(.md-container-ignore), .md-datepicker-container .md-placeholder {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+  pointer-events: none;
+  -webkit-font-smoothing: antialiased;
+  padding-left: 3px;
+  padding-right: 0;
+  z-index: 1;
+  -webkit-transform: translate3d(0, 28px, 0) scale(1);
+  transform: translate3d(0, 28px, 0) scale(1);
+  transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}
+
+.md-datepicker-container:focus.md-datepicker-has-value label:not(.md-no-float) {
+  color: rgb(158, 158, 158);
+}
+
+.md-datepicker-container.md-datepicker-has-value label:not(.md-no-float) {
+  -webkit-transform: translate3d(0, 11px, 0) scale(0.75);
+  transform: translate3d(0, 11px, 0) scale(0.75);
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.md-datepicker-container:focus label {
+  color: rgb(158, 158, 158);
+}
+
+.md-datepicker-container label:not(.md-container-ignore) {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: auto;
+}
+
+.md-datepicker-container.md-datepicker-has-value label:not(.md-no-float) {
+  transform: translate3d(0, 11px, 0) scale(0.75);
+}
+
+.md-datepicker-container label:not(.md-container-ignore) {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: auto;
+}
+
+.md-datepicker-container .md-placeholder {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition-property: opacity, transform;
+  transform: translate3d(0, 30px, 0);
+}

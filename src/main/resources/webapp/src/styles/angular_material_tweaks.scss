@@ -7,3 +7,11 @@ md-toolbar {
     padding: 8px;
   }
 }
+
+.md-select-menu-container {
+  background: whitesmoke;
+}
+
+md-select-menu.md-default-theme md-option[selected], md-select-menu md-option[selected] {
+  background: #dadada;
+}

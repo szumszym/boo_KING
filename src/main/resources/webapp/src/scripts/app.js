@@ -2,7 +2,7 @@
 
 angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                      $mdIconProvider) {
+                      $mdIconProvider, $mdDateLocaleProvider) {
         $stateProvider
             .state('main', {
                 templateUrl: 'views/main.html',
@@ -15,8 +15,8 @@ angular.module('app')
                 controller: 'StartController'
             })
             .state('main.hotel', {
-                url: '/hotel',
-                params: {'hotel': {}},
+                url: '/hotel/{name}',
+                params: {'name': '', 'hotel': {}, 'filters': {}},
                 templateUrl: 'views/main/hotel.html',
                 controller: 'HotelController'
             })
@@ -92,6 +92,10 @@ angular.module('app')
             'A400': '#E75753',
             'A700': '#E75753'
         });
+
+        $mdDateLocaleProvider.formatDate = function (date) {
+            return moment(date).format('YYYY-MM-DD');
+        };
 
         $mdIconProvider.icon('user', 'assets/images/user.svg', 64);
     })

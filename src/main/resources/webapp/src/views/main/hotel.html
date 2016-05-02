@@ -1,8 +1,41 @@
+<div class="boo__start-filter-container" layout="row" layout-xs="column" layout-align="center center" ng-cloak>
+    <md-input-container class="md-input-has-value">
+        <label for="place">City</label>
+        <i style="display: inline-block;" class="material-icons">place</i>
+        <span id="place" style="display: inline-block;">{{selectedFilters.city.name}}</span>
+    </md-input-container>
+    <md-input-container class="md-input-has-value">
+        <label for="checkin">Check in</label>
+        <i style="display: inline-block;" class="material-icons">today</i>
+        <span id="checkin" style="display: inline-block;">{{selectedFilters.dates.from | date:'yyyy-MM-dd'}}</span>
+    </md-input-container>
+    <md-input-container class="md-input-has-value">
+        <label for="checkout">Check out</label>
+        <i style="display: inline-block;" class="material-icons">today</i>
+        <span id="checkout" style="display: inline-block;">{{selectedFilters.dates.to | date:'yyyy-MM-dd'}}</span>
+    </md-input-container>
+    <md-input-container class="md-input-has-value">
+        <label for="rooms">Rooms</label>
+        <i style="display: inline-block;" class="material-icons">hotel</i>
+        <span id="rooms" style="display: inline-block;">{{selectedFilters.rooms}}</span>
+    </md-input-container>
+    <md-input-container class="md-input-has-value">
+        <label for="adults">Adults</label>
+        <i style="display: inline-block;" class="material-icons">supervisor_account</i>
+        <span id="adults" style="display: inline-block;">{{selectedFilters.adults}}</span>
+    </md-input-container>
+    <md-input-container class="md-input-has-value">
+        <label for="children">Children</label>
+        <i style="display: inline-block;" class="material-icons">child_friendly</i>
+        <span id="children" style="display: inline-block;">{{selectedFilters.children}}</span>
+    </md-input-container>
+</div>
+
 <md-content class="boo__main-hotel-container md-padding" layout="column">
     <md-card>
         <md-card-title layout-gt-sm="row" layout="column">
             <md-card-title-text flex>
-                <span class="md-headline">{{hotel.name}}</span>
+                <span class="md-headline">{{hotelName}}</span>
                 <span class="md-subhead">{{hotel.description}}</span>
             </md-card-title-text>
             <md-card-title-media flex>

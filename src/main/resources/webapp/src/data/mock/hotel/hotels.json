@@ -3,6 +3,9 @@
     "name": "Marina Palms Hotel",
     "description": "This hotel looks gorgeous, it has been built with poplar wood and has fir wooden decorations. Small, triangular windows add to the overall look of the hotel and have been added to the hotel in a very symmetric way.\n\nThe hotel is equipped with a large kitchen and one average bathroom, it also has a generous living room, five bedrooms, a spacious dining room, a bar and a cozy storage room.\n\nThe building is shaped like an L. The extension extends into a covered patio reaching until the end of that side of the hotel.\nThe second floor is smaller than the first, which allowed for several small balconies on one side of the hotel. This floor has roughly the same style as the floor below.\n\nThe roof is low and triangular and is covered with black roof tiles. One large chimney sits at the side of the hotel. Large, skylight windows let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by a gorgeous garden, including various trees, bushes, flowers and a large pond.",
     "stars": 2,
+    "country": "Polska",
+    "city": "Kraków",
+    "address": "Przy Rondzie 5",
     "photos": [
       {
         "url": "data/mock/hotel/1/1_1.jpg",
@@ -82,6 +85,9 @@
     "name": "King's Plaza Resort",
     "description": "This hotel looks posh and extravagant, it has been built with brown bricks and has brown brick decorations. Tall, squared windows allow enough light to enter the home and have been added to the hotel in a fairly symmetrical pattern.\n\nThe building is shaped like a T. The two extensions extend into wooden sunscreens structures reaching until the end of that side of the hotel.\nThe second floor is bigger than the first, which creates several overhanging parts on one side of the hotel. This floor has a very different style than the floor below.\n\nThe roof is low and v-shaped and is covered with brown ceramic tiles. Two small chimneys sit at the side of the hotel. There are no windows on the roof.\nThe hotel itself is surrounded by a tranquil garden, with various flowers, a long pond including a small waterfall and various rock formations.",
     "stars": 3,
+    "country": "Polska",
+    "city": "Kraków",
+    "address": "Szpitalna 11",
     "photos": [
       {
         "url": "data/mock/hotel/2/2_1.jpg",
@@ -119,6 +125,9 @@
     "name": "Emerald Haven Resort & Spa",
     "description": "From the outside this hotel looks grandiose, it has been built with yellow pine wood and has brown brick decorations. Tall, large windows add to the overall look of the hotel and have been added to the hotel in a very asymmetric way.\n\nThe hotel is equipped with a huge kitchen and one large bathroom, it also has a fairly small living room, two bedrooms, a spacious dining room, an office and a grand storage room.\n\nThe building is fairly rounded in shape. The hotel is partially surrounded by stylish gardens on two sides.\nThe second floor is bigger than the first, which creates a stylish overhang on one side of the hotel. This floor follows the same style as the floor below.\n\nThe roof is high and square shaped and is covered with overlapping roof tiles. Two large chimneys poke out the center of the roof. Many smaller windows let in plenty of light to the rooms below the roof.",
     "stars": 3,
+    "country": "Polska",
+    "city": "Kraków",
+    "address": "Jerzego Turowicza 16",
     "photos": [
       {
         "url": "data/mock/hotel/3/3_1.jpg",
@@ -150,6 +159,9 @@
     "name": "Illustrious Nimbus Hotel",
     "description": "This hotel looks cozy, it has been built with wood covered in render and has fir wooden decorations. Small, half rounded windows allow enough light to enter the home and have been added to the hotel in a mostly asymmetric way.\n\nThe hotel is equipped with a large kitchen and one average bathroom, it also has a snug living room, two bedrooms, a small dining room, a bar and a snug garage.\n\nThe building is shaped like a T. The two extensions are linked by glass overhanging panels circling around half the hotel.\nThe second floor is smaller than the first, which, in combination with its placement, creates an original look. This floor has a different style than the floor below.\n\nThe roof is high and square shaped and is covered with black roof tiles. One small chimney pokes out the center of the roof. Several small windows let in just enough light to the rooms below the roof.\nThe hotel itself is surrounded by a modest garden, with mostly grass and a few small trees.",
     "stars": 4,
+    "country": "Polska",
+    "city": "Kraków",
+    "address": "Bartosza Głowackiego 10",
     "photos": [
       {
         "url": "data/mock/hotel/4/4_1.jpg",
@@ -181,6 +193,9 @@
     "name": "Ebony Canyon Hotel",
     "description": "From the outside this hotel looks stylish, it has been built with white pine wood and has yellow pine wooden decorations. Tall, rectangular windows allow enough light to enter the home and have been added to the hotel in a mostly symmetric way.\n\nThe hotel is equipped with a small kitchen and one average bathroom, it also has a comfortable living room, four bedrooms, a snug dining area, a lounge area and a roomy storage room.\n\nThe building is rectangular shaped. The hotel is half surrounded by stylish gardens.\nThe second floor is smaller than the first, which allowed for several small balconies on one side of the hotel. This floor has a very different style than the floor below.\n\nThe roof is low and v-shaped and is covered with grey wood shingles. Two large chimneys sit at either side of the hotel. Two roof terraces let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by paved ground, with various party spots, like a fancy barbeque and a firepit.",
     "stars": 2,
+    "country": "Polska",
+    "city": "Kraków",
+    "address": "Małego Księcia 11",
     "photos": [
       {
         "url": "data/mock/hotel/5/5_1.jpg",
@@ -206,6 +221,9 @@
     "name": "Sublime Universe Resort",
     "description": "This hotel looks cozy, it has been built with white pine wood and has brown brick decorations. Small, squared windows add to the overall style of the hotel and have been added to the hotel in a very asymmetric way.\n\nThe hotel is equipped with an average kitchen and one average bathroom, it also has a small living room, five bedrooms, a small dining room, a playroom and a small garage.\n\nThe building is shaped like an L. The extension extends into wooden sunscreens structures circling around half the hotel.\nThe second floor is smaller than the first, which allowed for a roof garden on two sides of the hotel. This floor has roughly the same style as the floor below.\n\nThe roof is low and pyramid shaped and is covered with brown ceramic tiles. One small chimney sits at the side of the hotel. Two roof terraces let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by paved ground, with an outdoor eating and relaxing space and various potted plants.",
     "stars": 2,
+    "country": "Polska",
+    "city": "Wrocław",
+    "address": "Piłsudskiego 100",
     "photos": [
       {
         "url": "data/mock/hotel/6/6_1.jpg",
@@ -237,6 +255,9 @@
     "name": "Rainbow Hotel",
     "description": "This hotel looks snug and comfortable, it has been built with blue stones and has poplar wooden decorations. Tall, half rounded windows let in plenty of light and have been added to the hotel in a mostly symmetric way.\n\nThe hotel is equipped with a large kitchen and one modern bathroom, it also has a large living room, five bedrooms, a cozy dining area, a bar and a grand basement.\n\nThe building is shaped like a squared S. The two extensions extend into stylish gardens to each side.\nThe second floor is the same size as the first, but part of it hangs over the edge of the floor below, creating an overhang on one side and a balcony on the other. This floor has a different style than the floor below.\n\nThe roof is high and v-shaped and is covered with wheat straw. Two small chimneys sit at the side of the hotel. Two roof terraces let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by a gorgeous garden, including various trees, bushes, flowers and a large pond.",
     "stars": 5,
+    "country": "Polska",
+    "city": "Wrocław",
+    "address": "Ruska 8",
     "photos": [
       {
         "url": "data/mock/hotel/7/7_1.jpg",
@@ -256,6 +277,9 @@
     "name": "Utopia Resort",
     "description": "Utopia Resort looks luxurious, it has been built with red bricks and has cypress wooden decorations. Tall, squared windows brighten up the hotel and have been added to the hotel in a very symmetric way.\n\nThe hotel is equipped with an old-fashioned kitchen and one average bathroom, it also has a spacious living room, two bedrooms, a roomy dining area, a study and a snug garage.\n\nThe building is shaped like an L. The extension extends into stylish gardens reaching until the end of that side of the hotel.\nThe second floor is bigger than the first, which creates a stylish overhang around half the hotel. This floor has a very different style than the floor below.\n\nThe roof is low and rounded and is covered with red ceramic tiles. Two large chimneys sit at the side of the hotel. A few round, small windows let in enough light to the rooms below the roof.\nThe hotel itself is surrounded by grass, a huge tree in the center and bushes on the borders of the plot.",
     "stars": 4,
+    "country": "Polska",
+    "city": "Wrocław",
+    "address": "Walecznych 16",
     "photos": [
       {
         "url": "data/mock/hotel/8/8_1.jpg",
@@ -281,6 +305,9 @@
     "name": "Breakwater Resort",
     "description": "From the outside this hotel looks gorgeous, it has been built with white cedar wood and has yellow pine wooden decorations. Tall, rectangular windows add to the overall style of the hotel and have been added to the hotel in a very symmetric way.\n\nThe hotel is equipped with a modern kitchen and one large bathroom, it also has a snug living room, four bedrooms, a grand dining room and a cozy garage.\n\nThe building is fairly rounded in shape. The hotel is fully surrounded by a garden path.\nThe second floor is the same size as the first, but part of it hangs over the edge of the floor below, creating an overhang on one side and a balcony on the other. This floor has a different style than the floor below.\n\nThe roof is high and pyramid shaped and is covered with slate shingles. Two small chimneys sit at either side of the hotel. Large, skylight windows let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by a tranquil garden, with various flowers, a long pond including a small waterfall and various rock formations.",
     "stars": 1,
+    "country": "Polska",
+    "city": "Gdańsk",
+    "address": "Jesionowa 2",
     "photos": [
       {
         "url": "data/mock/hotel/9/9_1.jpg",
@@ -294,6 +321,9 @@
     "name": "Courtyard Hotel",
     "description": "From the outside this hotel looks very elegant, it has been built with brown bricks and has oak wooden decorations. Tall, rounded windows allow enough light to enter the home and have been added to the hotel in a fairly asymmetrical pattern.\n\nThe hotel is equipped with an old-fashioned kitchen and one average bathroom, it also has a snug living room, two bedrooms, a grand dining area, a playroom and a cozy storage room.\n\nThe building is shaped like a T. The two extensions extend into cloth sunscreens reaching until the end of that side of the hotel.\nThe second floor is the same size as the first, which has been built exactly on top of the floor below it. This floor has a slightly different style than the floor below.\n\nThe roof is low and triangular and is covered with black ceramic tiles. Two large chimneys poke out the center of the roof. Rows of small windows let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by a modest garden, covered mostly in grass, a few flower patches and with a small pond.",
     "stars": 1,
+    "country": "Polska",
+    "city": "Gdańsk",
+    "address": "Długie Ogrody 19",
     "photos": [
       {
         "url": "data/mock/hotel/10/10_1.jpg",
@@ -313,6 +343,9 @@
     "name": "Prism Hotel",
     "description": "This hotel looks magnificent, it has been built with white pine wood and has mahogany wooden decorations. Small, squared windows let in plenty of light and have been added to the hotel in a very asymmetric way.\n\nThe hotel is equipped with a modern kitchen and three bathrooms, it also has a small living room, five bedrooms, a small dining room, an office and a snug storage room.\n\nThe building is shaped like an L. The extension extends into wooden overhanging panels circling around half the hotel.\n\nThe roof is high and square shaped and is covered with brown wood shingles. Two small chimneys sit at either side of the hotel. Several long, thin windows let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by grass, a huge tree in the center and bushes on the borders of the plot.",
     "stars": 2,
+    "country": "Polska",
+    "city": "Poznań",
+    "address": "Stefana Żeromskiego 20",
     "photos": [
       {
         "url": "data/mock/hotel/11/11_1.jpg",
@@ -338,6 +371,9 @@
     "name": "Sapphire Coast Hotel",
     "description": "Sapphire Coast Hotel looks nice and traditional, it has been built with fir wood and has white brick decorations. Small, squared windows allow enough light to enter the home and have been added to the hotel in a very asymmetric way.\n\nThe hotel is equipped with an old-fashioned kitchen and one large bathroom, it also has a spacious living room, four bedrooms, a cozy dining room, a study and a small basement.\nThe second floor is the same size as the first, but part of it hangs over the edge of the floor below, creating an overhang on one side and a balcony on the other. This floor has a different style than the floor below.\n\nThe roof is high and rounded and is covered with red wood shingles. Two small chimneys poke out the center of the roof. Rows of small windows let in plenty of light to the rooms below the roof.\nThe hotel itself is surrounded by a gorgeous garden with many hidden lights that make the garden come to life at night.",
     "stars": 3,
+    "country": "Polska",
+    "city": "Poznań",
+    "address": "Długa 3",
     "photos": [
       {
         "url": "data/mock/hotel/12/12_1.jpg",

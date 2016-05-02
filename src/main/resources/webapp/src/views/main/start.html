@@ -2,33 +2,38 @@
     <md-input-container>
         <label>City</label>
         <i class="material-icons">place</i>
-        <md-select style="display: inline-block" ng-model="city" md-on-open="loadCities()">
-            <md-option ng-repeat="city in cities" ng-value="city">{{city.name}}</md-option>
+        <md-select style="display: inline-block" ng-model="selectedFilters.city" md-on-open="loadCities()"
+                   ng-change="filtersChanged()">
+            <md-option ng-repeat="city in filters.cities" ng-value="city">{{city.name}}</md-option>
         </md-select>
     </md-input-container>
-    <md-datepicker ng-model="checkinDate" md-placeholder="Enter check in date"
-                   md-max-date="checkoutDate"></md-datepicker>
-    <md-datepicker ng-model="checkoutDate" md-placeholder="Enter check out date"
-                   md-min-date="checkinDate"></md-datepicker>
+    <div class="md-datepicker-container" ng-class="{'md-datepicker-has-value': !!selectedFilters.dates.from}">
+        <label ng-class="{'md-placeholder': !selectedFilters.dates.from}">Check in</label>
+        <md-datepicker ng-model="selectedFilters.dates.from" md-placeholder="Enter check in date"
+                       md-max-date="selectedFilters.dates.to" ng-change="filtersChanged()"></md-datepicker>
+    </div>
+
+    <md-datepicker ng-model="selectedFilters.dates.to" md-placeholder="Enter check out date"
+                   md-min-date="selectedFilters.dates.from" ng-change="filtersChanged()"></md-datepicker>
     <md-input-container>
         <label>Rooms</label>
         <i class="material-icons">hotel</i>
-        <md-select ng-model="room">
-            <md-option ng-repeat="room in rooms" value="{{room}}">{{room}}</md-option>
+        <md-select ng-model="selectedFilters.rooms" ng-change="filtersChanged()">
+            <md-option ng-repeat="room in filters.rooms" value="{{room}}">{{room}}</md-option>
         </md-select>
     </md-input-container>
     <md-input-container>
         <label>Adults</label>
         <i class="material-icons"><i class="material-icons">supervisor_account</i></i>
-        <md-select ng-model="adult">
-            <md-option ng-repeat="adult in adults" value="{{adult}}">{{adult}}</md-option>
+        <md-select ng-model="selectedFilters.adults" ng-change="filtersChanged()">
+            <md-option ng-repeat="adult in filters.adults" value="{{adult}}">{{adult}}</md-option>
         </md-select>
     </md-input-container>
     <md-input-container>
         <label>Chidren</label>
         <i class="material-icons">child_friendly</i>
-        <md-select ng-model="child">
-            <md-option ng-repeat="child in children" value="{{child}}">{{child}}</md-option>
+        <md-select ng-model="selectedFilters.children" ng-change="filtersChanged()">
+            <md-option ng-repeat="child in filters.children" value="{{child}}">{{child}}</md-option>
         </md-select>
     </md-input-container>
 </div>

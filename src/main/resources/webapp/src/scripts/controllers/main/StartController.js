@@ -1,41 +1,45 @@
 angular.module('app')
-    .controller('StartController', function ($scope, $state, $timeout, $mdDialog, Hotels, utils) {
+    .controller('StartController', function ($scope, $state, $timeout, $mdDialog, Hotels, Search, utils) {
 
-        $scope.range = utils.range;
-
-        $scope.city = null;
-        $scope.adult = null;
-        $scope.child = null;
-        $scope.room = null;
-
-        $scope.cities = null;
-        $scope.adults = utils.range(30, 1);
-        $scope.children = utils.range(30);
-        $scope.rooms = utils.range(20, 1);
-
-        $scope.loadCities = function () {
-            /*TODO: load from service*/
-            return $scope.cities || $timeout(function () {
-                    $scope.cities = [
-                        {id: 0, name: 'All cities'},
-                        {id: 1, name: 'Kraków'},
-                        {id: 2, name: 'Wrocław'},
-                        {id: 3, name: 'Warszawa'},
-                        {id: 4, name: 'Poznań'},
-                        {id: 5, name: 'Łódź'}
-                    ];
-                }, 650);
+        var hotels = [];
+        $scope.filters = {
+            cities: [{value: null, name: 'All cities'}],
+            rooms: utils.range(30, 1),
+            adults: utils.range(20, 1),
+            children: utils.range(20, 0)
         };
 
-        $scope.minDate = new Date();
-        $scope.checkinDate = new Date();
-        $scope.checkoutDate = new Date(
-            $scope.checkinDate.getFullYear(),
-            $scope.checkinDate.getMonth(),
-            $scope.checkinDate.getDate() + 7
-        );
+        $scope.loadCities = function () {
+            var cityFilter = $scope.filters.cities;
+            return !!cityFilter && cityFilter.length > 1 ? cityFilter : Search.cities(function (cities) {
+                var parsedCities = _.map(cities, function (city) {
+                    return {name: city, value: city}
+                });
+                $scope.filters.cities = $scope.filters.cities.concat(parsedCities);
+            });
+        };
 
-        Hotels.query(function (hotels) {
+        $scope.filtersChanged = function () {
+            $scope.tiles = [];
+            hotels.$cancelRequest();
+            hotels = Hotels.query($scope.selectedFilters, hotelCallback);
+        };
+
+
+        var now = new Date();
+        $scope.selectedFilters = {
+            city: {value: null, name: 'All cities'},
+            dates: {
+                from: now,
+                to: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7)
+            },
+            room: 1,
+            adult: 1,
+            child: 0
+        };
+        hotels = Hotels.query($scope.selectedFilters, hotelCallback);
+
+        function hotelCallback(hotels) {
             var tiles = [];
             for (var i = 0; i < hotels.length; i++) {
                 var hotel = hotels[i];
@@ -46,10 +50,10 @@ angular.module('app')
                 });
             }
             $scope.tiles = tiles;
-        });
+        }
 
         $scope.goToHotel = function (hotel) {
-            $state.go('main.hotel', {hotel: hotel, name: hotel.name});
+            $state.go('main.hotel', {name: hotel.name, hotel: hotel, filters: $scope.selectedFilters});
         };
         /*    $scope.openDetailsPopup = function (hotel) {
          $mdDialog
