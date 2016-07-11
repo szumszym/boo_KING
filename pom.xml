@@ -91,7 +91,7 @@
                     <include>**/*</include>
                 </includes>
                 <excludes>
-                    <exclude>static/src/**/*</exclude>
+                    <!--<exclude>static/src/**/*</exclude>-->
                 </excludes>
             </resource>
         </resources>
@@ -106,13 +106,13 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/resources/webapp/node</directory>
+                            <directory>src/main/resources/static/src/node</directory>
                         </fileset>
                         <fileset>
-                            <directory>src/main/resources/webapp/node_modules</directory>
+                            <directory>src/main/resources/static/src/node_modules</directory>
                         </fileset>
                         <fileset>
-                            <directory>src/main/resources/webapp/bower_components</directory>
+                            <directory>src/main/resources/static/src/bower_components</directory>
                         </fileset>
                     </filesets>
                 </configuration>
@@ -122,7 +122,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>0.0.27</version>
                 <configuration>
-                    <workingDirectory>src/main/resources/webapp</workingDirectory>
+                    <workingDirectory>src/main/resources/static/src</workingDirectory>
                 </configuration>
                 <executions>
 
